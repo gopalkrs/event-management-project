@@ -7,7 +7,7 @@ if(!process.env.DATABASE_URL){
 }
 
 export default {
-    schema: './src/lib/database/schema.ts',
+    schema: './src/lib/database/schema',
     out: './migrations',
     dialect: 'postgresql',
     dbCredentials: {
