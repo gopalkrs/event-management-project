@@ -1,10 +1,9 @@
-import { integer, pgEnum, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./user";
 import { eventTypesEnum } from "./enums";
 
-
 export const events = pgTable("events",{
-    id: serial("id").primaryKey(),
+    id: uuid("id").primaryKey().defaultRandom(),
     title : varchar("title", {length: 255}).notNull(),
     description : varchar("description").notNull(),
     location: varchar("location").notNull(),
@@ -12,6 +11,6 @@ export const events = pgTable("events",{
     endTime: timestamp("start_time").notNull(),
     eventType: eventTypesEnum("event_type").notNull(),
     capacity: integer("capacity"),
-    createdBy: integer("created_by").references(()=> users.id, {onDelete: 'cascade', onUpdate: 'cascade'}),
+    createdBy: uuid("created_by").references(()=> users.id, {onDelete: 'cascade', onUpdate: 'cascade'}),
     eventTags: text("tags").array(),
 })
