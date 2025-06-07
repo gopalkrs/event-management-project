@@ -16,6 +16,12 @@ export const authOptions : NextAuthOptions = {
     session: {
         strategy: "database",
     },
+    callbacks: {
+        async session({session, user}){
+            session.user.id = user.id as string;
+            return session;
+        }
+    }
 };
 
 

@@ -1,5 +1,5 @@
 {
-  "id": "f8af39c9-c1f2-4905-87b6-db497c2828bf",
+  "id": "ac2eb4b9-b5db-4cbf-ab57-de9dd6d25fe4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -114,14 +114,38 @@
           "primaryKey": false,
           "notNull": true
         },
-        "location": {
-          "name": "location",
-          "type": "varchar",
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "start_time": {
           "name": "start_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
