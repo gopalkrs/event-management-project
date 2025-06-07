@@ -1,28 +1,24 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import { db } from "@/lib/database/db";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions : NextAuthOptions = {
     providers: [
         Google({
-            clientId: process.env.GOOGLE_CLIENT_ID || "",
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-            // httpOptions: {
-            //     timeout: 10000, // 10 seconds
-            //   },
-        }),
-        // Github({
-        //     clientId: process.env.GITHUB_CLIENT_ID || "",
-        //     clientSecret: process.env.GITHUB_CLIENT_SECRET || ""
-        // }),
+            clientId: process.env.AUTH_GOOGLE_ID || "",
+            clientSecret: process.env.AUTH_GOOGLE_SECRET || "",
+        })
     ],
     
     adapter: DrizzleAdapter(db),
     session: {
         strategy: "database",
     },
+};
+
+
     // callbacks: {
     //     async signIn({ account }) {
     //         if (account && account.providerAccountId) {
@@ -39,4 +35,3 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // pages: {
     //     error: "/auth/error", // your custom error page
     // }
-})

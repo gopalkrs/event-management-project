@@ -1,14 +1,16 @@
-import { Clapperboard, MicVocal, PartyPopper, SearchIcon, Trophy, UserIcon, Utensils } from 'lucide-react';
+"use client"
+import { Clapperboard, Loader2, MicVocal, PartyPopper, SearchIcon, Trophy, Utensils } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { Input } from '../ui/input';
-import { signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import LoginButton from '../header/login-button';
 
-const Header = async () => {
+const Header = () => {
 
-    // const { data: session, status } = useSession();
+    const { data: session, status } = useSession();
 
-    // console.log("Session Data:", session);
+    console.log("Session Data:", session);
     const navLinks = [
         { name: 'For You', href: '/', icon: PartyPopper },
         { name: 'Dineout', href: '/dineout', icon: Utensils },
@@ -28,8 +30,11 @@ const Header = async () => {
                         <Link className='px-3 py-1 rounded-3xl font-semibold text-gray-600' key={index} href={link.href}>{link.name}</Link>
                     ))}
                 </div>
+                {status==='loading'? <div><Loader2 className='animate-spin text-gray-400' /></div> : 
+                (session ? <div className='bg-orange-400 text-white font-semibold flex items-center justify-center w-8 h-8 rounded-full'>{session?.user?.name?.charAt(0)}</div> : 
                 <div>
-                </div>
+                    <LoginButton />
+                </div>)}
             </div>
             <div className='relative'>
                 <SearchIcon className='h-5 w-5 absolute top-2.5 left-2 z-50 text-blue-500' />

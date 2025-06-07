@@ -3,6 +3,7 @@ import React from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { UserIcon } from 'lucide-react';
 import { logIn } from '@/lib/actions/auth';
+import { signIn } from 'next-auth/react';
 
 
 const LoginButton = () => {
@@ -16,7 +17,7 @@ const LoginButton = () => {
                 </DialogTrigger>
                 <DialogContent>
                     <div className="space-x-2">
-                        <button onClick={() => logIn()}>Signin with Google</button>
+                        <button onClick={() => signIn("google", { callbackUrl: "/" })}>Signin with Google</button>
                         {/* <button onClick={() => signIn("github")}>Signin with GitHub</button> */}
                     </div>
                 </DialogContent>
