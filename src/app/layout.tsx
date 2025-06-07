@@ -31,9 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${lobster.variable} antialiased`}
       >
+        <SessionWrapper>
           <Header />
           {children}
           <Footer />
+          </SessionWrapper>
       </body>
     </html>
   );
