@@ -12,14 +12,12 @@ export async function POST(req : Request){
     const formattedDate = new Date(date); // Converts string to Date
     const fullStartTime = new Date(startTime);
     const fullEndTime = new Date(endTime);
-    console.log("Received in backend:", {
-        date,
-        startTime,
-        endTime,
-      });
+    // console.log("Received in backend:", {
+    //     date,
+    //     startTime,
+    //     endTime,
+    //   });
 
-      console.log(typeof fullStartTime);
-    // console.log(formattedDate.toISOString());
     const result = await db.insert(events).values({
         title, 
         description, 
