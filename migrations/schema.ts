@@ -1,7 +1,7 @@
 import { pgTable, text, timestamp, foreignKey, uuid, integer, numeric, unique, boolean, varchar, pgEnum } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
-export const eventType = pgEnum("event_type", ['concert', 'theatre', 'comedy', 'sports', 'exhibition', 'festival', 'conference', 'workshop', 'food_and_drink', 'other'])
+export const eventType = pgEnum("event_type", ['concert', 'theatre', 'comedy', 'sports', 'exhibition', 'festival', 'conference', 'workshop', 'food_and_drink', 'other', 'parties'])
 export const status = pgEnum("status", ['confirmed', 'cancelled', 'pending'])
 
 
