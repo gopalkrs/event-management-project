@@ -29,7 +29,9 @@ const EventPage = () => {
       eventType: "",
       capacity: 0,
       eventTags: "",
-      createdBy: ""
+      createdBy: "",
+      eventPrice: 0,
+      venue: "",
     },
   });
 
@@ -87,6 +89,7 @@ const EventPage = () => {
     console.log(payload);
     const res = await axios.post(`http://localhost:3000/api/events`, payload);
     console.log(res);
+    reset();
   }
 
   return (
@@ -120,7 +123,8 @@ const EventPage = () => {
                   <SelectItem value="comedy">Comedy</SelectItem>
                   <SelectItem value="workshop">Workshop</SelectItem>
                   <SelectItem value="food_and_drink">Food/Drinks</SelectItem>
-                  <SelectItem value="other">Food/Drinks</SelectItem>
+                  <SelectItem value="parties">Parties</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -176,6 +180,17 @@ const EventPage = () => {
             <div className='flex flex-col'>
               <label htmlFor='eventTags' className='text-sm mb-1'>Event Tags</label>
               <input type='text' id='eventTags' {...register("eventTags")} placeholder='Comma-separated tags' className='p-2 outline-1 outline-gray-300 text-sm text-gray-800 rounded' />
+            </div>
+            {/*Price*/}
+            <div className='flex flex-col'>
+              <label htmlFor='price' className='text-sm mb-1'>Price</label>
+              <input type='number' id='price' {...register("eventPrice")} className='p-2 outline-1 outline-gray-300 text-sm text-gray-800 rounded' />
+            </div>
+
+            {/*Venue*/}
+            <div className='flex flex-col'>
+              <label htmlFor='venue' className='text-sm mb-1'>Venue</label>
+              <input type='text' id='venue' {...register("venue")} placeholder='XYZ' className='p-2 outline-1 outline-gray-300 text-sm text-gray-800 rounded' />
             </div>
 
           </div>

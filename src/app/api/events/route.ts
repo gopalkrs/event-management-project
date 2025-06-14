@@ -6,7 +6,7 @@ export async function POST(req : Request){
 
     const body = await req.json();
 
-    const {title, description, startTime, image, date, endTime, state, city, eventType, eventTags, createdBy, capacity} = body;
+    const {title, description, startTime, image, date, endTime, state, city, eventType, eventTags, createdBy, capacity, venue, eventPrice} = body;
 
 
     const formattedDate = new Date(date); // Converts string to Date
@@ -26,6 +26,8 @@ export async function POST(req : Request){
         startTime: fullStartTime,
         endTime: fullEndTime,
         state, 
+        venue,
+        eventPrice,
         city,
         eventType,
         createdBy, 

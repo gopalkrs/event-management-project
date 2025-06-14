@@ -1,26 +1,49 @@
-"use client"
-import { fetchEvents } from '@/lib/queries/fetchEvents'
-import { useQuery } from '@tanstack/react-query'
-import { Loader, Loader2, LoaderPinwheel } from 'lucide-react';
-import Image from 'next/image';
+import { Guitar, Mic, MicVocal, Wine } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react'
 
-const Events = () => {
+const EventPage = () => {
 
-  const {data, isLoading, error} = useQuery({
-    queryKey : ['events'],
-    queryFn: fetchEvents,
-  });
-
-  console.log(data?.data?.data)
-
-  if(isLoading) return <div className='min-h-screen flex justify-center items-center'><Loader className='animate-ping text-gray-800'/></div>
+  const exploreItems = [
+    {
+      title: 'Concerts',
+      icon: Guitar,
+      color: 'text-blue-100'
+    },
+    {
+      title: 'Comedy',
+      icon: MicVocal,
+      color: 'text-yellow-100'
+    },
+    {
+      title: 'Nightlife',
+      icon: Wine,
+      color: 'text-purple-100'
+    }
+  ]
 
   return (
-    <section className='min-h-screen flex flex-col items-center my-10 mx-5'>
-      <Image src={data?.data?.data[2].image} width={500} height={500} alt={'event-img'} />
+    <section className='min-h-screen flex flex-col my-10 mx-10'>
+      <div className="flex items-center gap-3">
+        <h2 className="text-xl font-bold text-gray-800">Explore Events</h2>
+        <div className="flex-1 h-px bg-gray-300"></div>
+      </div>
+      <div className='flex xs:flex-row flex-col gap-5 my-10'>
+        {exploreItems.map((item,index)=>{
+          return (
+            <Link href={'/events/concerts'} key={index} className='flex flex-col xs:px-2 py-3 rounded-sm border border-gray-200 bg-yellow-300 text-gray-800 items-center'>
+              <h3 className='text-sm font-medium'>{item.title}</h3>
+              <item.icon className={`h-6 w-6 mb-2 text-gray-800`} />
+            </Link>
+          )
+        })}
+      </div>
+      <div className="flex items-center gap-3">
+        <h2 className="text-xl font-bold text-gray-800">All Events</h2>
+        <div className="flex-1 h-px bg-gray-300"></div>
+      </div>
     </section>
   )
 }
 
-export default Events
+export default EventPage;
