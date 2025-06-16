@@ -1,20 +1,29 @@
 "use client"
-import { fetchAllEvents, fetchEvents } from '@/lib/queries/fetchEvents'
+import { fetchAllEvents, fetchSingleEvent } from '@/lib/queries/fetchEvents'
 import { useQuery } from '@tanstack/react-query'
-import { Bookmark, Calendar, Clock, Info, Languages, Loader, MapPin } from 'lucide-react';
+import { Clock, Info, Languages, Loader } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
-import { differenceInHours, format } from 'date-fns';
-import EventDetailsCard from './EventDetailsCard';
+import { differenceInHours } from 'date-fns';
+import EventDetailsCard from '@/components/events/EventDetailsCard';
+import { notFound } from 'next/navigation';
 
-const EventDetailsPage = () => {
+const EventDetailsPage = ({ params } : { params: { eventId: string; category: string } }) => {
+
+  const {category, eventId} = React.use(params);
+console.log(eventId, category);
+  const validCategories = ['events', 'party', 'sports', 'activity'];
+
+  if (!validCategories.includes(category)) {
+    notFound();
+  }
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['events'],
-    queryFn: fetchAllEvents,
+    queryKey: ['fetchSingleEvent', eventId],
+    queryFn: ()=>fetchSingleEvent({eventId}),
   });
 
-  console.log(data?.data?.data);
+  console.log(data?.data.data[0]);
 
   if (isLoading) return <div className='min-h-screen flex justify-center items-center'><Loader className='animate-ping text-gray-800' /></div>
 
@@ -23,7 +32,7 @@ const EventDetailsPage = () => {
       <div className='flex md:max-w-2xl flex-col w-full'>
         <div className="w-full">
           <Image
-            src={data?.data?.data[2].image}
+            src={data?.data?.data[0].image}
             alt="event-img"
             height={300}
             width={500}
@@ -33,7 +42,7 @@ const EventDetailsPage = () => {
       
       <div className="w-full mt-10 ">
         <h2 className="text-xl font-bold mb-2 text-left">About the Event</h2>
-        <p className="text-sm text-gray-700">{data?.data?.data[2].description || "About text goes here..."}</p>
+        <p className="text-sm text-gray-700">{data?.data?.data[0].description || "About text goes here..."}</p>
       </div>
       <div className="w-full mt-10 ">
         <h2 className="text-xl font-bold mb-2 text-left">Event Guide</h2>
@@ -42,7 +51,7 @@ const EventDetailsPage = () => {
             <Clock className='h-10 w-10 text-gray-900 bg-gray-200 p-3 rounded-md' />
             <div className='flex flex-col'>
               <p className='text-sm text-gray-400'>Duration</p>
-              <p className='text-sm'>{differenceInHours(new Date(data?.data?.data[2].endTime), new Date(data?.data?.data[2].startTime))} Hours</p>
+              <p className='text-sm'>{differenceInHours(new Date(data?.data?.data[0].endTime), new Date(data?.data?.data[0].startTime))} Hours</p>
             </div>
           </div>
           <div className='flex flex-row items-center gap-1'>
@@ -64,12 +73,12 @@ const EventDetailsPage = () => {
       <div className='w-full mt-10 '>
         <h2 className='text-xl font-bold mb-2 text-left'>Venue</h2>
         <div>
-          <p className='text-sm text-gray-700'>{data?.data?.data[2].venue || "Venue details go here..."}</p>
+          <p className='text-sm text-gray-700'>{data?.data?.data[0].venue || "Venue details go here..."}</p>
         </div>
       </div>
       </div>
       <div className=''>
-      <EventDetailsCard />
+      <EventDetailsCard data={data?.data?.data[0]} />
       </div>
     </section>
   )

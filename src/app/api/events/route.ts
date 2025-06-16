@@ -1,6 +1,14 @@
 import { db } from "@/lib/database/db";
 import { events } from "@/lib/database/schema/events";
+import { and, inArray } from "drizzle-orm";
 import { NextResponse } from "next/server";
+
+type QueryFiltersType = {
+    eventType?: string[];
+    city?: string;
+    state?: string;
+    date?: Date;
+}
 
 export async function POST(req : Request){
 
@@ -39,8 +47,17 @@ export async function POST(req : Request){
     });
 }
 
-export async function GET(){
-    const result = await db.select().from(events);
+export async function GET(req: Request){
+
+    const { searchParams } = new URL(req.url);
+    const eventTypeParams = searchParams.get('eventType');
+
+    const conditions = []
+    if(eventTypeParams){
+        const eventTypes = eventTypeParams.split(",");
+        conditions.push(inArray(events.eventType, eventTypes as any));
+    }
+    const result = await db.select().from(events).where(conditions.length > 0 ? and(...conditions) : undefined);
 
     return NextResponse.json({
         message: "Events fetched successfully", success: true, data: result
