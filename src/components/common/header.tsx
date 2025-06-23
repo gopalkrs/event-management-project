@@ -1,5 +1,5 @@
 "use client"
-import { Clapperboard, Loader2, MicVocal, PartyPopper, SearchIcon, Trophy, Utensils } from 'lucide-react';
+import { Handshake, Loader2, MicVocal, PartyPopper, Rocket, SearchIcon, Trophy, Utensils } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { Input } from '../ui/input';
@@ -13,10 +13,10 @@ const Header = () => {
     console.log("Session Data:", session);
     const navLinks = [
         { name: 'For You', href: '/', icon: PartyPopper },
-        { name: 'Dineout', href: '/dineout', icon: Utensils },
+        { name: 'Meetups', href: '/meetups', icon: Handshake },
         { name: 'Sports', href: '/sports', icon: Trophy },
         { name: 'Events', href: '/events', icon: MicVocal },
-        { name: 'Movies', href: '/movies', icon: Clapperboard }
+        { name: 'Activities', href: '/activities', icon: Rocket }
     ];
 
     return (

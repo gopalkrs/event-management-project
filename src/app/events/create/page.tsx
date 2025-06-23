@@ -117,13 +117,9 @@ const EventPage = () => {
                   <SelectItem value="sports">Sports</SelectItem>
                   <SelectItem value="concert">Concert</SelectItem>
                   <SelectItem value="theatre">Theatre</SelectItem>
-                  <SelectItem value="festival">Festival</SelectItem>
-                  <SelectItem value="exhibition">Exhibition</SelectItem>
-                  <SelectItem value="conference">Conference</SelectItem>
+                  <SelectItem value="activities">Activities</SelectItem>
                   <SelectItem value="comedy">Comedy</SelectItem>
-                  <SelectItem value="workshop">Workshop</SelectItem>
-                  <SelectItem value="food_and_drink">Food/Drinks</SelectItem>
-                  <SelectItem value="parties">Parties</SelectItem>
+                  <SelectItem value="meetups">Meetups</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
