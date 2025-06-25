@@ -1,14 +1,20 @@
-import NextAuth from "next-auth";
+//import NextAuth from "next-auth";
+import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
-    interface Session{
+    // interface Session{
+    //     user: {
+    //         id: string;
+    //         name: string;
+    //         email: string;
+    //         image: string;
+    //     }
+    // }
+    interface Session {
         user: {
-            id: string;
-            name: string;
-            email: string;
-            image: string;
-        }
-    }
+          id: string; // <-- Your custom 'id' property
+        } & DefaultSession["user"]; // <-- Merge with the default 'user' properties from NextAuth.js
+      }
 
     interface User {
         id: string;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lobster } from "next/font/google";
+import { Geist, Lobster } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
@@ -20,6 +20,9 @@ const lobster = Lobster({
 export const metadata: Metadata = {
   title: "Tiketex",
   description: "",
+  icons: {
+    icon: "/calendar.svg"
+  }
 };
 
 export default function RootLayout({

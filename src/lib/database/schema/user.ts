@@ -1,5 +1,5 @@
-import { boolean, integer, pgTable, primaryKey, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import type { AdapterAccountType } from "next-auth/adapters"
+import { boolean, integer, pgTable, primaryKey, text, timestamp } from "drizzle-orm/pg-core";
+import type { AdapterAccount } from "next-auth/adapters"
 
 //export const roleTypeEnum = pgEnum('role_type', ['organizer', 'attendee']);
 
@@ -26,7 +26,7 @@ export const accounts = pgTable(
     userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    type: text("type").$type<AdapterAccountType>().notNull(),
+    type: text("type").$type<AdapterAccount>().notNull(),
     provider: text("provider").notNull(),
     providerAccountId: text("providerAccountId").notNull(),
     refresh_token: text("refresh_token"),

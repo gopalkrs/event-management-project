@@ -1,20 +1,21 @@
 import { db } from "@/lib/database/db";
 import { events } from "@/lib/database/schema/events";
+import { EVENT_TYPE_VALUES, eventTypeValues } from "@/types/types";
 import { and, desc, inArray } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-type QueryFiltersType = {
-    eventType?: string[];
-    city?: string;
-    state?: string;
-    date?: Date;
-}
+// type QueryFiltersType = {
+//     eventType?: string[];
+//     city?: string;
+//     state?: string;
+//     date?: Date;
+// }
 
 export async function POST(req : Request){
 
     const body = await req.json();
 
-    const {title, description, startTime, image, date, endTime, state, city, eventType, eventTags, createdBy, capacity, venue, eventPrice} = body;
+    const {title, description, startTime, image, date, endTime, state, city, eventType, createdBy, capacity, venue, eventPrice} = body;
 
 
     const formattedDate = new Date(date); // Converts string to Date
@@ -56,8 +57,11 @@ export async function GET(req: Request){
 
     const conditions = []
     if(eventTypeParams){
-        const eventTypes = eventTypeParams.split(",");
-        conditions.push(inArray(events.eventType, eventTypes as any));
+        //const eventTypes = eventTypeParams.split(",");
+        const eventTypes = eventTypeParams.split(',').filter(
+            (val): val is EVENT_TYPE_VALUES => eventTypeValues.includes(val as EVENT_TYPE_VALUES)
+          );
+        conditions.push(inArray(events.eventType, eventTypes));
 
         const result = await db.select().from(events).where(conditions.length > 0 ? and(...conditions) : undefined);
 

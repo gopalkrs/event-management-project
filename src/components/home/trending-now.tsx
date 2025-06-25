@@ -4,14 +4,15 @@ import { fetchRecentEvents } from '@/lib/queries/fetchEvents';
 import React from 'react'
 import EventCard from '../common/EventCard';
 import { useQuery } from '@tanstack/react-query';
+import { EVENT_TYPE } from '@/types/types';
 
 const TrendingNow = () => {
 
-  const { isPending, data, error } = useQuery({
+  const { isPending, data } = useQuery({
     queryKey: ['fetchRecent'],
     queryFn: fetchRecentEvents,
   });
-
+  if (isPending) return <div className='min-h-screen flex justify-center items-center'>Loading...</div>;
   return (
     <section className='my-10 bg-violet-800'>
       <div className='px-5 py-10'>
@@ -21,13 +22,13 @@ const TrendingNow = () => {
           Trending Now
         </h2>
         <div className='py-6 hidden sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-          {data?.data?.data?.map((event: any, ind: number) => (
+          {data?.data?.data?.map((event: EVENT_TYPE, ind: number) => (
             <EventCard key={ind} event={event} />
           ))}
         </div>
         <div className="py-6 relative sm:hidden">
           <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-hide px-2">
-            {data?.data?.data?.map((event: any, ind: number) => (
+            {data?.data?.data?.map((event: EVENT_TYPE, ind: number) => (
               <div key={ind} className="snap-center shrink-0 w-full px-1">
                 <EventCard event={event} />
               </div>

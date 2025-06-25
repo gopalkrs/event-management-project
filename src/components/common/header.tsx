@@ -1,5 +1,5 @@
 "use client"
-import { Handshake, Loader2, MicVocal, PartyPopper, Rocket, SearchIcon, Trophy, Utensils } from 'lucide-react';
+import { Handshake, Loader2, MicVocal, PartyPopper, Rocket, SearchIcon, Trophy } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { Input } from '../ui/input';
@@ -10,7 +10,7 @@ const Header = () => {
 
     const { data: session, status } = useSession();
 
-    console.log("Session Data:", session);
+    //console.log("Session Data:", session);
     const navLinks = [
         { name: 'For You', href: '/', icon: PartyPopper },
         { name: 'Meetups', href: '/meetups', icon: Handshake },
@@ -31,7 +31,7 @@ const Header = () => {
                     ))}
                 </div>
                 {status==='loading'? <div><Loader2 className='animate-spin text-gray-400' /></div> : 
-                (session ? <div className='bg-orange-400 text-white font-semibold flex items-center justify-center w-8 h-8 rounded-full'>{session?.user?.name?.charAt(0)}</div> : 
+                (session ? <Link href={'/profile'} className='bg-orange-400 text-white font-semibold flex items-center justify-center w-8 h-8 rounded-full'>{session?.user?.name?.charAt(0)}</Link> : 
                 <div>
                     <LoginButton />
                 </div>)}

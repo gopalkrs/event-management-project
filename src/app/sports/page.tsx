@@ -1,16 +1,15 @@
 "use client";
 import EventCard from '@/components/common/EventCard';
 import { fetchSportsFilter } from '@/lib/queries/fetchEvents';
+import { EVENT_TYPE } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
 import { Loader } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react'
 
 const SportsPage = () => {
 
 
-  const { isPending, data, error } = useQuery({
+  const { isPending, data } = useQuery({
     queryKey: ['fetchSportsFilter'],
     queryFn: fetchSportsFilter,
   });
@@ -29,7 +28,7 @@ const SportsPage = () => {
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-          {data?.data?.data?.map((event: any, ind: number) => (
+          {data?.data?.data?.map((event: EVENT_TYPE, ind: number) => (
             <EventCard key={ind} event={event} />
           ))}
         </div>

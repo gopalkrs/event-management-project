@@ -13,8 +13,7 @@ const EventPage = () => {
     handleSubmit,
     setValue,
     reset,
-    watch,
-    formState: { errors },
+    // formState: { errors },
   } = useForm({
     // resolver: zodResolver(login),
     defaultValues: {

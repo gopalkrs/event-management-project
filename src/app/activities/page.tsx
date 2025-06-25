@@ -1,15 +1,15 @@
 "use client";
+import EventCard from '@/components/common/EventCard';
 import { fetchActivitiesFilter } from '@/lib/queries/fetchEvents';
+import { EVENT_TYPE } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
 import { Loader } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react'
 
 const ActivitiesPage = () => {
 
 
-  const { isPending, data, error } = useQuery({
+  const { isPending, data } = useQuery({
     queryKey: ['fetchActivities'],
     queryFn: fetchActivitiesFilter,
   });
@@ -28,22 +28,8 @@ const ActivitiesPage = () => {
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-          {data?.data?.data?.map((event: any) => (
-            <Link href={`/events/${event.id}`} key={event.id} className='flex flex-col rounded-lg border border-gray-200 shadow-sm text-gray-800 mb-4 pb-2'>
-              <div className='relative w-full h-48'>
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  className='object-cover rounded-t-lg'
-                />
-              </div>
-              <div className='text-left pt-2 pl-2'>
-              <h3 className='text-md font-medium'>{event.title}</h3>
-              <p className='text-xs text-gray-600'>{event.venue}, {event.city}</p>
-              <p className='text-xs text-gray-600'>₹{event.eventPrice} onwards</p>
-              </div>
-            </Link>
+          {data?.data?.data?.map((event: EVENT_TYPE, ind: number) => (
+            <EventCard key={ind} event={event} />
           ))}
         </div>
       </div>

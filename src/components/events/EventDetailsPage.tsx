@@ -1,15 +1,14 @@
 "use client"
-import { fetchAllEvents, fetchEvents } from '@/lib/queries/fetchEvents'
+import { fetchAllEvents } from '@/lib/queries/fetchEvents'
 import { useQuery } from '@tanstack/react-query'
-import { Bookmark, Calendar, Clock, Info, Languages, Loader, MapPin } from 'lucide-react';
+import { Clock, Info, Languages, Loader } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
-import { differenceInHours, format } from 'date-fns';
-import EventDetailsCard from './EventDetailsCard';
+import { differenceInHours } from 'date-fns';
 
 const EventDetailsPage = () => {
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['events'],
     queryFn: fetchAllEvents,
   });
@@ -42,7 +41,7 @@ const EventDetailsPage = () => {
             <Clock className='h-10 w-10 text-gray-900 bg-gray-200 p-3 rounded-md' />
             <div className='flex flex-col'>
               <p className='text-sm text-gray-400'>Duration</p>
-              <p className='text-sm'>{differenceInHours(new Date(data?.data?.data[2].endTime), new Date(data?.data?.data[2].startTime))} Hours</p>
+              <p className='text-sm'>{differenceInHours(new Date(data?.data?.data[0].endTime), new Date(data?.data?.data[2].startTime))} Hours</p>
             </div>
           </div>
           <div className='flex flex-row items-center gap-1'>
@@ -64,13 +63,13 @@ const EventDetailsPage = () => {
       <div className='w-full mt-10 '>
         <h2 className='text-xl font-bold mb-2 text-left'>Venue</h2>
         <div>
-          <p className='text-sm text-gray-700'>{data?.data?.data[2].venue || "Venue details go here..."}</p>
+          <p className='text-sm text-gray-700'>{data?.data?.data[0].venue || "Venue details go here..."}</p>
         </div>
       </div>
       </div>
-      <div className=''>
-      <EventDetailsCard />
-      </div>
+      {/* <div className=''>
+      <EventDetailsCard data={data} />
+      </div> */}
     </section>
   )
 }

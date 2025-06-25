@@ -1,8 +1,9 @@
+import { EVENT_TYPE } from '@/types/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const EventCard = ({event}) => {
+const EventCard = ({event}: {event : EVENT_TYPE}) => {
   return (
         <Link href={`/events/${event.id}`} key={event.id} className='flex flex-col rounded-lg border bg-gray-50 border-gray-200 shadow-sm text-gray-800 mb-4 pb-2'>
               <div className='relative w-full h-48'>

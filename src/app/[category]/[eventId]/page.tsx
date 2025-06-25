@@ -1,24 +1,31 @@
 "use client"
-import { fetchAllEvents, fetchSingleEvent } from '@/lib/queries/fetchEvents'
+import { fetchSingleEvent } from '@/lib/queries/fetchEvents'
 import { useQuery } from '@tanstack/react-query'
 import { Clock, Info, Languages, Loader } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import { differenceInHours } from 'date-fns';
 import EventDetailsCard from '@/components/events/EventDetailsCard';
-import { notFound } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { PAGE_PROPS } from '@/types/types';
 
-const EventDetailsPage = ({ params } : { params: { eventId: string; category: string } }) => {
+const EventDetailsPage = () => {
 
-  const {category, eventId} = React.use(params);
-console.log(eventId, category);
-  const validCategories = ['events', 'party', 'sports', 'activity'];
+  const params = useParams();
+  // if (!params || !params.category || !params.eventId) {
+  //   notFound();
+  // }
 
-  if (!validCategories.includes(category)) {
-    notFound();
-  }
 
-  const { data, isLoading, error } = useQuery({
+  const { eventId } = params as PAGE_PROPS;
+
+  // const validCategories = ['party', 'sports', 'activities', 'concerts', 'theatre', 'exhibitions', 'comedy'];
+
+  // if (!validCategories.includes(category)) {
+  //   notFound();
+  // }
+
+  const { data, isLoading } = useQuery({
     queryKey: ['fetchSingleEvent', eventId],
     queryFn: ()=>fetchSingleEvent({eventId}),
   });
@@ -73,7 +80,7 @@ console.log(eventId, category);
       <div className='w-full mt-10 '>
         <h2 className='text-xl font-bold mb-2 text-left'>Venue</h2>
         <div>
-          <p className='text-sm text-gray-700'>{data?.data?.data[0].venue || "Venue details go here..."}</p>
+          <p className='text-sm text-gray-700'>{data?.data?.data[0].venue}, {data?.data?.data[0].city}</p>
         </div>
       </div>
       </div>

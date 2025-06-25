@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { UserIcon } from 'lucide-react';
-import { logIn } from '@/lib/actions/auth';
+//import { logIn } from '@/lib/actions/auth';
 import { signIn } from 'next-auth/react';
 
 
@@ -16,8 +16,10 @@ const LoginButton = () => {
                     </div>
                 </DialogTrigger>
                 <DialogContent>
+                    
+                <DialogTitle>Sign In to continue</DialogTitle>
                     <div className="space-x-2">
-                        <button onClick={() => signIn("google", { callbackUrl: "/" })}>Signin with Google</button>
+                        <button className='border font-semibold rounded-sm border-gray-400 px-2 py-2 cursor-pointer bg-purple-400 text-white' onClick={() => signIn("google", { callbackUrl: "/" })}>Signin with Google</button>
                         {/* <button onClick={() => signIn("github")}>Signin with GitHub</button> */}
                     </div>
                 </DialogContent>
