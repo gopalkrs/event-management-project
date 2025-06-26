@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Event Booking Platform
 
-## Getting Started
+This repository contains the codebase and documentation for an **Event Booking Platform**. Below is an overview of the project, its structure, and how to get started.
 
-First, run the development server:
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Introduction
+The **Event Booking Platform** is a web-based application designed to simplify the process of booking and managing events. It provides an intuitive interface for users to browse, book, and manage events while offering administrators tools to oversee bookings and event details.
+
+## Features
+- User-friendly interface for browsing and booking events.
+- Admin dashboard for managing events and bookings.
+- Secure authentication and user management.
+- Real-time updates and notifications.
+- Scalable and modular architecture.
+
+## Project Structure
+The project is organized as follows:
+```
+/src
+    /components       # Reusable UI components
+    /pages            # Application pages (e.g., Home, Events, Booking)
+    /services         # API and backend service integrations
+    /utils            # Utility functions and helpers
+    /styles           # Global and component-specific styles
+    /assets           # Static assets like images and icons
+/backend
+    /controllers      # Backend logic for handling requests
+    /models           # Database models and schemas
+    /routes           # API routes
+    /middlewares      # Middleware functions
+    /config           # Configuration files (e.g., database, environment)
+tests               # Unit and integration tests
+public              # Publicly accessible files
+package.json        # Project dependencies and scripts
+README.md           # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
+1. Clone the repository:
+        ```bash
+        git clone https://github.com/your-username/event-booking-platform.git
+        ```
+2. Navigate to the project directory:
+        ```bash
+        cd event-booking-platform
+        ```
+3. Install dependencies:
+        ```bash
+        npm install
+        ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
+1. Start the development server:
+        ```bash
+        npm start
+        ```
+2. Open your browser and navigate to `http://localhost:3000`.
+3. Explore the platform and test its features.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request with a detailed description of your changes.
 
-## Learn More
+## License
+This project is licensed under the [MIT License](LICENSE).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feel free to reach out if you have any questions or suggestions!

@@ -1,7 +1,9 @@
 import { pgTable, text, timestamp, foreignKey, uuid, integer, numeric, unique, boolean, varchar, pgEnum } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
-export const eventType = pgEnum("event_type", ['concert', 'theatre', 'comedy', 'sports', 'exhibition', 'festival', 'conference', 'workshop', 'food_and_drink', 'other', 'parties'])
+export const eventType = pgEnum("event_type", ['concert', 'theatre', 'comedy', 'sports', 'exhibition', 'festival', 'conference', 'workshop', 'food_and_drink', 'other', 'parties', 'activities', 'meetups'])
+export const genderType = pgEnum("gender_type", ['Male', 'Female', 'Others'])
+export const roleType = pgEnum("role_type", ['user', 'admin'])
 export const status = pgEnum("status", ['confirmed', 'cancelled', 'pending'])
 
 
@@ -92,6 +94,23 @@ export const session = pgTable("session", {
 		}).onDelete("cascade"),
 ]);
 
+export const profiles = pgTable("profiles", {
+	id: uuid().defaultRandom().primaryKey().notNull(),
+	userId: text("user_id"),
+	gender: genderType(),
+	role: roleType(),
+	city: text(),
+	state: text(),
+	country: text(),
+	dob: timestamp({ mode: 'string' }),
+}, (table) => [
+	foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "profiles_user_id_fkey"
+		}).onUpdate("cascade").onDelete("cascade"),
+]);
+
 export const events = pgTable("events", {
 	id: uuid().defaultRandom().primaryKey().notNull(),
 	title: varchar({ length: 255 }).notNull(),
@@ -108,6 +127,7 @@ export const events = pgTable("events", {
 	tags: text().array(),
 	venue: text(),
 	eventPrice: integer("event_price"),
+	likeCount: integer("like_count").default(0),
 }, (table) => [
 	foreignKey({
 			columns: [table.createdBy],

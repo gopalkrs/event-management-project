@@ -1,4 +1,7 @@
-
+import { updateProfileSchema } from "@/lib/schema-validate/updateProfileSchema";
+import { InferInsertModel } from "drizzle-orm";
+import { z } from "zod";
+import { profiles } from "../../migrations/schema";
 export type EVENT_TYPE = {
     id: string;
     title: string;
@@ -9,10 +12,25 @@ export type EVENT_TYPE = {
     eventPrice: number;
 
 }
+
+// export type PROFILE_TYPE = {
+//     role: string,
+//     gender: string,
+//     dob: string,
+//     state: string, 
+//     city: string,
+//     country: string,
+// }
+
+export type PROFILE_TYPE =  z.infer<typeof updateProfileSchema>;
+
 export type PAGE_PROPS = {
     eventId: string; 
     category: string
 }
+
+export type NewProfileType = InferInsertModel<typeof profiles>;
+
 export type EVENT_DETAILS_TYPE = {
     id: string;
     title: string;

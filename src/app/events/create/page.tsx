@@ -85,9 +85,13 @@ const EventPage = () => {
       endTime: fullEndTime,
     };
     // setValue("createdBy", session?.user?.email || "");
-    console.log(payload);
-    const res = await axios.post(`http://localhost:3000/api/events`, payload);
-    console.log(res);
+    //console.log(payload);
+    const res = await axios.post(`/api/events`, payload);
+    if(!res){
+      console.error("Error while creating event");
+      return;
+    }
+    //console.log(res);
     reset();
   }
 

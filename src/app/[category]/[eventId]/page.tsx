@@ -1,7 +1,7 @@
 "use client"
 import { fetchSingleEvent } from '@/lib/queries/fetchEvents'
 import { useQuery } from '@tanstack/react-query'
-import { Clock, Info, Languages, Loader } from 'lucide-react';
+import { Clock, Info, Languages, Loader, ThumbsUp } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import { differenceInHours } from 'date-fns';
@@ -30,7 +30,7 @@ const EventDetailsPage = () => {
     queryFn: ()=>fetchSingleEvent({eventId}),
   });
 
-  //console.log(data?.data.data[0]);
+  console.log(data?.data.data[0]);
 
   if (isLoading) return <div className='min-h-screen flex justify-center items-center'><Loader className='animate-ping text-gray-800' /></div>
 
@@ -48,6 +48,10 @@ const EventDetailsPage = () => {
         </div>
       
       <div className="w-full mt-10 ">
+        <div className='mb-5 flex flex-row gap-1'>
+          <button><ThumbsUp className='h-5 w-5 font-extralight text-green-300' /></button> {/*add likescount*/}
+          <p className='text-green-300 text-sm'>{data?.data?.data[0].likeCount}</p>
+        </div>
         <h2 className="text-xl font-bold mb-2 text-left">About the Event</h2>
         <p className="text-sm text-gray-700">{data?.data?.data[0].description || "About text goes here..."}</p>
       </div>

@@ -13,3 +13,5 @@ export const bookings = pgTable("bookings", {
     numberOfTickets: integer("number_of_tickets").notNull().default(1),
     amount: numeric("amount", { precision: 10, scale: 2 }).notNull(),
 })
+
+

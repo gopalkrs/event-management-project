@@ -56,6 +56,19 @@ export async function GET(req: Request){
 
 
     const conditions = []
+
+    if(eventTypeParams && recentParam === "true"){
+        const eventTypes = eventTypeParams.split(',').filter(
+            (val): val is EVENT_TYPE_VALUES => eventTypeValues.includes(val as EVENT_TYPE_VALUES)
+          );
+        conditions.push(inArray(events.eventType, eventTypes));
+
+        const result = await db.select().from(events).where(conditions.length > 0 ? and(...conditions) : undefined).orderBy(desc(events.date)).limit(4);
+
+        return NextResponse.json({
+            message: "Events fetched successfully", success: true, data: result
+        });
+    }
     if(eventTypeParams){
         //const eventTypes = eventTypeParams.split(",");
         const eventTypes = eventTypeParams.split(',').filter(

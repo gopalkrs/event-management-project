@@ -1,17 +1,17 @@
 "use client";
 
-import { fetchRecentEvents } from '@/lib/queries/fetchEvents';
+import { fetchRecentMusicEvents } from '@/lib/queries/fetchEvents';
 import React, { useState } from 'react'
 import EventCard from '../common/EventCard';
 import { useQuery } from '@tanstack/react-query';
 import { EVENT_TYPE } from '@/types/types';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const TrendingNow = () => {
+const LiveEvents = () => {
 
   const { isPending, data } = useQuery({
-    queryKey: ['fetchRecent'],
-    queryFn: fetchRecentEvents,
+    queryKey: ['fetchRecentMusicEvents'],
+    queryFn: fetchRecentMusicEvents,
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,12 +26,12 @@ const TrendingNow = () => {
 
   if (isPending) return <div className='min-h-screen flex justify-center items-center'>Loading...</div>;
   return (
-    <section className='my-10 bg-violet-800'>
+    <section className='my-10 bg-red-300'>
       <div className='px-5 py-10'>
         {/* <h2 className='text-lg text-gray-100 font-bold'>Trending Now</h2>
         <div className="w-1/3 h-px bg-gray-300"></div> */}
         <h2 className="text-xl font-bold text-gray-100 inline-block relative after:content-[''] after:block after:h-px after:bg-gray-300 after:w-1/2 after:mt-1">
-          Trending Now
+          The Best Of Live Shows 
         </h2>
         <div className='py-6 hidden sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
           {data?.data?.data?.map((event: EVENT_TYPE, ind: number) => (
@@ -70,4 +70,4 @@ const TrendingNow = () => {
   )
 }
 
-export default TrendingNow
+export default LiveEvents;
