@@ -32,7 +32,7 @@ const EventDetailsPage = () => {
 
   console.log(data?.data.data[0]);
 
-  if (isLoading) return <div className='min-h-screen flex justify-center items-center'><Loader className='animate-ping text-gray-800' /></div>
+  if (isLoading) return <div className='min-h-screen flex justify-center items-center'><Loader className='animate-spin text-gray-800' /></div>
 
   return (
     <section className='min-h-screen gap-10 flex md:flex-row flex-col items-start my-10 mx-5 md:mx-20'>

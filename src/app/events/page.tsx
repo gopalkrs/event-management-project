@@ -23,7 +23,7 @@ const EventPage = () => {
     },
     {
       title: 'Nightlife',
-      source: '/nightlife.svg',
+      source: '/disco.svg',
       color: 'text-purple-100'
     }
   ]
@@ -48,7 +48,7 @@ const EventPage = () => {
       <div className='flex flex-row gap-2 sm:gap-5 my-10'>
         {exploreItems.map((item, index) => {
           return (
-            <Link href={'/events/concerts'} key={index} className='flex flex-col px-1 sm:px-2 py-4 rounded-sm border bg-lime-100 text-gray-600 items-center'>
+            <Link href={'/events/concerts'} key={index} className='flex flex-col px-2 transition-all ease-in-out py-4 rounded-sm border hover:shadow-sm border-lime-100 text-gray-600 items-center'>
               <h3 className='text-sm font-medium'>{item.title}</h3>
               <Image src={item.source} alt='evt-type' width={50} height={50}/>
             </Link>
