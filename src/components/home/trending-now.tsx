@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import EventCard from '../common/EventCard';
 import { useQuery } from '@tanstack/react-query';
 import { EVENT_TYPE } from '@/types/types';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, LoaderCircle } from 'lucide-react';
 
 const TrendingNow = () => {
 
@@ -24,7 +24,7 @@ const TrendingNow = () => {
     setCurrentIndex((next) => (next === data?.data?.data?.length - 1 ? 0 : next + 1));
   };
 
-  if (isPending) return <div className='min-h-screen flex justify-center items-center'>Loading...</div>;
+  if (isPending) return <div className='min-h-screen flex justify-center items-center'><LoaderCircle className='animate-spin ' /></div>;
   return (
     <section className='my-10 bg-violet-800'>
       <div className='px-5 py-10'>
