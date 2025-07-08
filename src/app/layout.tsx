@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Lobster } from "next/font/google";
+import { Geist, Lobster, Nunito } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
@@ -17,6 +17,18 @@ const lobster = Lobster({
   subsets: ["latin"],
 });
 
+const nunito = Nunito({
+  variable: "--nunito",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+// const ebGaramond = EB_Garamond({
+//   variable: "--eb-garamond",
+//   weight: "400",
+//   subsets: ["latin"],
+// });
+
 export const metadata: Metadata = {
   title: "Tiketex",
   description: "",
@@ -33,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${lobster.variable} antialiased`}
+        className={`${geistSans.variable} ${lobster.variable} ${nunito.variable} antialiased`}
       >
         <ReactQueryWrapper>
           <SessionWrapper>

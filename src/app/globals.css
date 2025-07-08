@@ -18,6 +18,8 @@
   --font-mono: var(--font-geist-mono);
   --breakpoint-xs: 20rem;
   --font-lobster: var(--lobster);
+  --font-nunito: var(--nunito);
+  --font-eb-garamond: var(--eb-garamond)
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);

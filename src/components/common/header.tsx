@@ -5,12 +5,16 @@ import React from 'react';
 import { Input } from '../ui/input';
 import { useSession } from 'next-auth/react';
 import LoginButton from '../header/login-button';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
 
     const { data: session, status } = useSession();
+    const pathname = usePathname();
 
-    //console.log("Session Data:", session);
+    const isCheckoutPage = pathname.endsWith("/checkout");
+
+    console.log(pathname);
     const navLinks = [
         { name: 'For You', href: '/', icon: PartyPopper },
         { name: 'Meetups', href: '/meetups', icon: Handshake },
@@ -36,10 +40,10 @@ const Header = () => {
                     <LoginButton />
                 </div>)}
             </div>
-            <div className='relative'>
+            {!isCheckoutPage && (<div className='relative'>
                 <SearchIcon className='h-5 w-5 absolute top-2.5 left-2 z-50 text-blue-500' />
                 <Input className='px-10 py-5' placeholder='Search for movies, events and restaurants' />
-            </div>
+            </div>)}
             <div className='flex items-center justify-center flex-row gap-1 xs:gap-2 md:hidden'>
                 {navLinks.map((link, index) => (
                     <div key={index} className='sm:px-3 px-1 py-1 rounded-xl flex flex-col items-center justify-center hover:bg-gray-200'>

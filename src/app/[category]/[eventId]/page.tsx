@@ -30,7 +30,7 @@ const EventDetailsPage = () => {
     queryFn: ()=>fetchSingleEvent({eventId}),
   });
 
-  console.log(data?.data.data[0]);
+  //console.log(data?.data.data[0]);
 
   if (isLoading) return <div className='min-h-screen flex justify-center items-center'><Loader className='animate-spin text-gray-800' /></div>
 

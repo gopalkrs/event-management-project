@@ -24,7 +24,7 @@ const SportsPage = () => {
     <section className='min-h-screen flex flex-col my-10 xs:mx-10 mx-5'>
       <div className="">
         <div className='flex items-center gap-3 my-10'>
-          <h2 className="text-xl font-bold text-gray-800">All Sporting Events</h2>
+          <h2 className="text-xl font-bold text-gray-800 font-nunito">All Sporting Events</h2>
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>

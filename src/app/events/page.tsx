@@ -42,7 +42,7 @@ const EventPage = () => {
   return (
     <section className='min-h-screen flex flex-col my-10 xs:mx-10 mx-5'>
       <div className="flex items-center gap-3">
-        <h2 className="text-xl font-bold text-gray-800">Explore Events</h2>
+        <h2 className="text-xl font-bold text-gray-800 font-nunito">Explore Events</h2>
         <div className="flex-1 h-px bg-gray-300"></div>
       </div>
       <div className='flex flex-row gap-2 sm:gap-5 my-10'>

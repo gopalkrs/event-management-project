@@ -1,6 +1,7 @@
 import { EVENT_DETAILS_TYPE } from '@/types/types'
 import { format } from 'date-fns'
 import { Bookmark, Calendar, MapPin } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 const EventDetailsCard = ({data} : {data : EVENT_DETAILS_TYPE}) => {
@@ -21,7 +22,7 @@ const EventDetailsCard = ({data} : {data : EVENT_DETAILS_TYPE}) => {
           </div>
           <div className='flex items-center justify-between flex-row gap-2'>
             <p className='text-gray-900 text-sm'>Starts from ₹{data?.eventPrice}</p>
-            <button className='py-1 px-3 rounded-sm font-semibold bg-black text-gray-50 '>Book Now</button>
+            <Link href={`/${data.eventType}/${data.id}/checkout`} className='py-1 px-3 rounded-sm font-semibold bg-black text-gray-50 '>Book Now</Link>
           </div>
         </div>
   )

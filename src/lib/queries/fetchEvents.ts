@@ -6,6 +6,12 @@ export const fetchEventsFilter = () => {
 
     return res;
 }
+export const fetchMeetupEvents = () => {
+    const res = axios.get(`/api/events?eventType=meetups`);
+    if(!res) throw new Error("Error while fetching events");
+
+    return res;
+}
 export const fetchRecentMusicEvents = () => {
     const res = axios.get(`/api/events?eventType=concert&recent=true`);
     if(!res) throw new Error("Error while fetching events");
