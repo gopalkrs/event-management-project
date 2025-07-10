@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, foreignKey, uuid, integer, numeric, unique, boolean, varchar, pgEnum } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, uuid, text, integer, timestamp, numeric, unique, boolean, varchar, pgEnum } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 export const eventType = pgEnum("event_type", ['concert', 'theatre', 'comedy', 'sports', 'exhibition', 'festival', 'conference', 'workshop', 'food_and_drink', 'other', 'parties', 'activities', 'meetups'])
@@ -6,6 +6,26 @@ export const genderType = pgEnum("gender_type", ['Male', 'Female', 'Others'])
 export const roleType = pgEnum("role_type", ['user', 'admin'])
 export const status = pgEnum("status", ['confirmed', 'cancelled', 'pending'])
 
+
+export const orders = pgTable("orders", {
+	id: uuid().defaultRandom().primaryKey().notNull(),
+	userId: text("user_id"),
+	eventId: uuid("event_id"),
+	totalAmount: integer("total_amount"),
+	description: text(),
+	createdAt: timestamp("created_at", { mode: 'string' }),
+}, (table) => [
+	foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "orders_user_id_fkey"
+		}).onUpdate("cascade").onDelete("cascade"),
+	foreignKey({
+			columns: [table.eventId],
+			foreignColumns: [events.id],
+			name: "orders_event_id_fkey"
+		}).onUpdate("cascade").onDelete("cascade"),
+]);
 
 export const verificationToken = pgTable("verificationToken", {
 	identifier: text().notNull(),

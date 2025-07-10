@@ -56,4 +56,5 @@ export const eventTypeValues = [
     'meetups', 'sports', 'exhibition', 'festival', 'other'
 ] as const;
 
+
 export type EVENT_TYPE_VALUES = typeof eventTypeValues[number];

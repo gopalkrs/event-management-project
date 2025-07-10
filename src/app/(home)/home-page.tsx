@@ -6,7 +6,7 @@ const HomePage = () => {
 
   
   return (
-    <section className='min-h-screen my-10'>
+    <section className='min-h-screen my-10 relative'>
         <TrendingNow />
         <LiveEvents />
     </section>
