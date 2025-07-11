@@ -83,7 +83,7 @@ export async function GET(req: Request){
         });
     }
     if(recentParam === "true"){
-        const recentResults = await db.select().from(events).orderBy(desc(events.date)).limit(4);
+        const recentResults = await db.select().from(events).orderBy(desc(events.id)).limit(4);
 
         return NextResponse.json({
             message: "Events fetched successfully", success: true, data: recentResults

@@ -26,12 +26,12 @@ const LiveEvents = () => {
 
   if (isPending) return <div className='min-h-screen flex justify-center items-center'><LoaderCircle className='animate-spin ' /></div>;
   return (
-    <section className='my-10 bg-gradient-to-r from-teal-300 via-gray-100 to-indigo-300
+    <section className='py-5 bg-[#1a1a2e]
 '>
       <div className='px-5 py-10'>
         {/* <h2 className='text-lg text-gray-100 font-bold'>Trending Now</h2>
         <div className="w-1/3 h-px bg-gray-300"></div> */}
-        <h2 className="text-xl font-bold text-gray-800 font-nunito inline-block relative after:content-[''] after:block after:h-px after:bg-gray-700 after:w-1/2 after:mt-1">
+        <h2 className="text-xl font-bold text-gray-50 font-nunito inline-block relative after:content-[''] after:block after:h-px after:bg-gray-50 after:w-1/2 after:mt-1">
           The Best Of Live Shows 
         </h2>
         <div className='py-6 hidden sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>

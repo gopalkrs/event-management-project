@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Lobster, Nunito } from "next/font/google";
+import { Cabin, Geist, Lobster, Nunito } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
@@ -19,6 +19,12 @@ const lobster = Lobster({
 
 const nunito = Nunito({
   variable: "--nunito",
+  weight: "800",
+  subsets: ["latin"],
+});
+
+const cabin = Cabin({
+  variable: "--cabin",
   weight: "400",
   subsets: ["latin"],
 });
@@ -45,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${lobster.variable} ${nunito.variable} antialiased`}
+        className={`${geistSans.variable} ${lobster.variable} ${nunito.variable} ${cabin.variable} antialiased`}
       >
         <ReactQueryWrapper>
           <SessionWrapper>

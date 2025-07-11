@@ -14,7 +14,7 @@ const Header = () => {
 
     const isCheckoutPage = pathname.endsWith("/checkout");
 
-    console.log(pathname);
+    //console.log(pathname);
     const navLinks = [
         { name: 'For You', href: '/', icon: PartyPopper },
         { name: 'Meetups', href: '/meetups', icon: Handshake },
@@ -31,7 +31,7 @@ const Header = () => {
                 </div>
                 <div className='md:flex flex-row gap-4 hidden'>
                     {navLinks.map((link, index) => (
-                        <Link className='px-3 py-1 rounded-3xl font-semibold text-gray-600' key={index} href={link.href}>{link.name}</Link>
+                        <Link className={`px-3 py-1 ${pathname.endsWith(link.href)? 'text-gray-50 p-1 bg-blue-400' : 'text-gray-600'} rounded-3xl font-semibold`} key={index} href={link.href}>{link.name}</Link>
                     ))}
                 </div>
                 {status==='loading'? <div><Loader2 className='animate-spin text-gray-400' /></div> : 
@@ -46,9 +46,9 @@ const Header = () => {
             </div>)}
             <div className='flex items-center justify-center flex-row gap-1 xs:gap-2 md:hidden'>
                 {navLinks.map((link, index) => (
-                    <div key={index} className='sm:px-3 px-1 py-1 rounded-xl flex flex-col items-center justify-center hover:bg-gray-200'>
-                        <link.icon className='h-5 w-5 text-gray-600' />
-                        <Link className='sm:text-md text-sm font-semibold text-gray-600' href={link.href}>{link.name}</Link>
+                    <div key={index} className={`sm:px-3 px-1 py-1 ${pathname.endsWith(link.href)? 'text-gray-50 p-1 bg-blue-400' : 'text-gray-600'} rounded-xl flex flex-col items-center justify-center hover:bg-gray-200`}>
+                        <link.icon className='h-5 w-5' />
+                        <Link className='sm:text-md text-sm font-semibold' href={link.href}>{link.name}</Link>
                     </div>
                 ))}
             </div>
